@@ -7,4 +7,4 @@ services:
     volumes:
     - ./application:/application
     working_dir: /application
-    command: composer create-project --prefer-dist laravel/lumen:^8.0 .
+    command: composer create-project --prefer-dist laravel/lumen:^9.0 .
