@@ -1,0 +1,10 @@
+version: "3"
+services:
+  ecommerce-php:
+    build: .
+    image: ecommerce-php-image
+    container_name: ecommerce-php
+    volumes:
+    - ./application:/application
+    working_dir: /application
+    command: composer create-project --prefer-dist laravel/lumen:^7.0 .
