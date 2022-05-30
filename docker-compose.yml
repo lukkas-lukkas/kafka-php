@@ -4,7 +4,13 @@ services:
     build: .
     image: ecommerce-php-image
     container_name: ecommerce-php
+    ports:
+    - 9001:9001
     volumes:
     - ./application:/application
-    working_dir: /application
-    command: composer create-project --prefer-dist laravel/lumen:^7.0 .
+    networks:
+      - bubble
+
+networks:
+  bubble:
+    external: true
