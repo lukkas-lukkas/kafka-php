@@ -2,13 +2,13 @@
 
 namespace EcommercePhp\NewOrder\Infrastructure\Providers;
 
+use EcommercePhp\NewOrder\UI\Http\Routes\ModuleRoutes;
 use Illuminate\Support\ServiceProvider;
 
-class ModuleProvider extends ServiceProvider
+class RouteProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->register(CommandBusProvider::class);
-        $this->app->register(RouteProvider::class);
+        ModuleRoutes::register();
     }
 }
