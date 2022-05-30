@@ -2,9 +2,12 @@
 
 namespace EcommercePhp\NewOrder\Application;
 
-class NewOrderCommandHandler
+use EcommercePhp\Shared\Domain\Bus\Command;
+use EcommercePhp\Shared\Domain\Bus\CommandHandler;
+
+class NewOrderCommandHandler implements CommandHandler
 {
-    public function handle(NewOrderCommand $command): array
+    public function handle(Command $command): array
     {
         return [
             'payload' => $command->toArray(),
