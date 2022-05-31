@@ -6,6 +6,8 @@
     "type": "project",
     "require": {
         "php": "^8.0",
+        "ext-rdkafka": "*",
+        "enqueue/rdkafka": "^0.10.16",
         "laravel/lumen-framework": "^9.0"
     },
     "require-dev": {
