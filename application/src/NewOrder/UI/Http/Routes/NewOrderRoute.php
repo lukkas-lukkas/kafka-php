@@ -3,17 +3,10 @@
 namespace EcommercePhp\NewOrder\UI\Http\Routes;
 
 use EcommercePhp\NewOrder\UI\Http\Actions\NewOrderAction;
-use Laravel\Lumen\Routing\Router;
+use EcommercePhp\Shared\UI\Http\Routes\AbstractRoute;
 
-class NewOrderRoute
+class NewOrderRoute extends AbstractRoute
 {
-    private Router $router;
-
-    public function __construct()
-    {
-        $this->router = app('router');
-    }
-
     public function route(): void
     {
         $this->router->get('/api/new-order', NewOrderAction::class);

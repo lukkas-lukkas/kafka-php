@@ -2,21 +2,16 @@
 
 namespace EcommercePhp\NewOrder\UI\Http\Actions;
 
-use App\Http\Controllers\Controller;
 use EcommercePhp\NewOrder\Application\NewOrderCommand;
-use Illuminate\Contracts\Bus\Dispatcher;
+use EcommercePhp\Shared\UI\Http\Actions\AbstractAction;
 use Illuminate\Http\JsonResponse;
 
-class NewOrderAction extends Controller
+class NewOrderAction extends AbstractAction
 {
-    public function __construct(private Dispatcher $dispatcher)
-    {
-    }
-
     public function __invoke(): JsonResponse
     {
         $command = new NewOrderCommand(
-            'Full name',
+            'New full name',
             '123456',
             '1994-05-20',
             'email@test.com',
