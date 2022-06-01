@@ -13,14 +13,6 @@
 |
 */
 
-$router->get('/', function (\EcommercePhp\Fraud\Domain\Rules\Analyst $analyst) use ($router) {
-    $decision = $analyst->handle([
-        'birthdate' => '1994-05-20',
-        'amount' => 150000
-    ]);
-
-    return response()->json([
-        'approved' => $decision->isApproved(),
-        'message' => $decision->getMessage(),
-    ]);
+$router->get('/', function () use ($router) {
+    return $router->app->version();
 });
