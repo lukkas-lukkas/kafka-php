@@ -97,6 +97,7 @@ $app->configure('kafka');
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(\EcommercePhp\NewOrder\Infrastructure\Providers\ModuleProvider::class);
 $app->register(\EcommercePhp\Shared\Infrastructure\Providers\ModuleProvider::class);
+$app->register(\EcommercePhp\Fraud\Infrastructure\Providers\ModuleProvider::class);
 
 /*
 |--------------------------------------------------------------------------

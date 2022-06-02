@@ -25,4 +25,9 @@ class ContextManager
         $factory = new RdKafkaConnectionFactory($this->config);
         return $factory->createContext();
     }
+
+    public function setGroupId(string $groupId): void
+    {
+        $this->config['global']['group.id'] = $groupId;
+    }
 }
