@@ -2,48 +2,23 @@
 
 namespace EcommercePhp\Fraud\UI\Console;
 
-use EcommercePhp\Shared\Infrastructure\Message\ContextManager;
-use Enqueue\Consumption\QueueConsumer;
-use Illuminate\Console\Command;
+use EcommercePhp\Shared\UI\Console\AbstractProcessorCommand;
 use Interop\Queue\Context;
 use Interop\Queue\Message;
-use Interop\Queue\Processor;
 
-class ProcessNewOrder extends Command implements Processor
+class ProcessNewOrder extends AbstractProcessorCommand
 {
     protected $signature = 'process-new-order';
 
-    private const TOPIC = 'new-order';
-
-    public function __construct(private ContextManager $contextManager)
+    protected function consume(Message $message, Context $context): void
     {
-        parent::__construct();
+        var_dump([
+            'message' => $message->getBody(),
+        ]);
     }
 
-    public function __invoke(): void
+    protected function getTopic(): string
     {
-        $this->contextManager->setGroupId('ProcessNewOrder');
-        $context = $this->contextManager->getContext();
-
-        $queueConsumer = new QueueConsumer($context);
-
-        $queueConsumer->bind(self::TOPIC, $this);
-
-        $queueConsumer->consume();
-    }
-
-    public function process(Message $message, Context $context)
-    {
-        try {
-            var_dump([
-                'message' => $message->getBody(),
-            ]);
-
-            return self::ACK;
-        } catch (\Throwable $throwable) {
-            echo "Erro no consumo da mensagem" . PHP_EOL;
-
-            return self::REJECT;
-        }
+        return 'new-order';
     }
 }
