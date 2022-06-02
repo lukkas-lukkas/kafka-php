@@ -5,6 +5,7 @@ namespace EcommercePhp\Shared\UI\Console;
 use EcommercePhp\Shared\Infrastructure\Message\ContextManager;
 use Enqueue\Consumption\QueueConsumer;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Facades\Log;
 use Interop\Queue\Context;
 use Interop\Queue\Message;
@@ -12,8 +13,10 @@ use Interop\Queue\Processor;
 
 abstract class AbstractProcessorCommand extends Command implements Processor
 {
-    public function __construct(private ContextManager $contextManager)
-    {
+    public function __construct(
+        private ContextManager $contextManager,
+        protected Dispatcher $dispatcher
+    ) {
         parent::__construct();
     }
 
