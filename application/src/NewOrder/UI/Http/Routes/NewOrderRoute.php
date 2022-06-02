@@ -9,6 +9,6 @@ class NewOrderRoute extends AbstractRoute
 {
     public function route(): void
     {
-        $this->router->get('/api/new-order', NewOrderAction::class);
+        $this->router->post('/api/new-order', NewOrderAction::class);
     }
 }
