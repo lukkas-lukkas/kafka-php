@@ -9,5 +9,6 @@ class ModuleProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(CommandProvider::class);
+        $this->app->register(CommandBusProvider::class);
     }
 }
