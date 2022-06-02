@@ -10,5 +10,6 @@ class ModuleProvider extends ServiceProvider
     {
         $this->app->register(CommandProvider::class);
         $this->app->register(CommandBusProvider::class);
+        $this->app->register(DependencyInjectionProvider::class);
     }
 }

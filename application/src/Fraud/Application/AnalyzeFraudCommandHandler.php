@@ -2,39 +2,34 @@
 
 namespace EcommercePhp\Fraud\Application;
 
-use Carbon\Carbon;
+use EcommercePhp\Fraud\Domain\Rules\Analyst;
 use EcommercePhp\Shared\Domain\Bus\Command;
 use EcommercePhp\Shared\Domain\Bus\CommandHandler;
 
 class AnalyzeFraudCommandHandler implements CommandHandler
 {
+    public function __construct(private Analyst $analyst)
+    {
+    }
+
     public function handle(Command $command)
     {
         $payload = $command->toArray();
 
-        if ((int) $payload['amount'] > 15000) {
-            print_r([
-                'message' => 'pedido-reprovado',
-                'order' => $payload,
-                'reason' => 'Valor do pedido maior de R$ 15.000,00',
-            ]);
-            return;
-        }
+        $decision = $this->analyst->handle($payload);
 
-        $birthdate = Carbon::createFromFormat('Y-m-d', $payload['birthdate']);
-
-        if ($birthdate->age < 15) {
+        if ($decision->isApproved()) {
             print_r([
-                'message' => 'pedido-reprovado',
-                'order' => $payload,
-                'reason' => 'Idade do consumidor menor que 15 anos',
+                'message' => 'pedido-aprovado',
+                'order' => $command->toArray(),
             ]);
             return;
         }
 
         print_r([
-            'message' => 'pedido-aprovado',
-            'order' => $command->toArray(),
+            'message' => 'pedido-reprovado',
+            'order' => $payload,
+            'reason' => $decision->getMessage(),
         ]);
     }
 }
