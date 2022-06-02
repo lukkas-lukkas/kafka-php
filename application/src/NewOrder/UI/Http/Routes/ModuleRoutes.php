@@ -2,17 +2,10 @@
 
 namespace EcommercePhp\NewOrder\UI\Http\Routes;
 
-class ModuleRoutes
+use EcommercePhp\Shared\UI\Http\Routes\AbstractModuleRoute;
+
+class ModuleRoutes extends AbstractModuleRoute
 {
-    public static function register(): void
-    {
-        $module = new static();
-
-        foreach ($module->routes() as $route) {
-            (new $route)->route();
-        }
-    }
-
     public function routes(): array
     {
         return [
