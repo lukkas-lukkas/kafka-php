@@ -2,7 +2,9 @@
 
 namespace EcommercePhp\NewOrder\Application;
 
-class NewOrderCommand
+use EcommercePhp\Shared\Domain\Bus\Command;
+
+class NewOrderCommand implements Command
 {
     public function __construct(
         private string $name,
