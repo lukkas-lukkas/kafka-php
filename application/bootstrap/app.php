@@ -60,6 +60,7 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('kafka');
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,7 @@ $app->configure('app');
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(\EcommercePhp\NewOrder\Infrastructure\Providers\ModuleProvider::class);
+$app->register(\EcommercePhp\Shared\Infrastructure\Providers\ModuleProvider::class);
 
 /*
 |--------------------------------------------------------------------------
