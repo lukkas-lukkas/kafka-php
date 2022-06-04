@@ -6,7 +6,7 @@ Projeto desenvolvido para apresentar integração do php com kafka e utilizar co
 
 ### Instalar projeto
 ```
-docker run --rm --interactive --tty --volume $PWD/application:/application -w application  composer install
+docker run --rm --interactive --tty --volume $PWD/application:/application -w application composer install
 ```
 
 ### Subindo aplicação e construindo imagem
